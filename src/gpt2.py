@@ -67,7 +67,7 @@ def finetune_gpt2(args):
             for s in range(0, len(train_label), batch_num):
                 # updating
                 tmp_data = train_data[s:s+batch_num]
-                tmp_label = train_label[s:s+batch_num]
+                tmp_label = trainqfdg_label[s:s+batch_num]
                 inputs = tokenizer(tmp_data, return_tensors="pt").to(args.device)
                 outputs = model(**inputs, labels=inputs["input_ids"]).logits.softmax(-1)[:, -1, :]
                 labels = tokenizer(tmp_label, return_tensors="pt")["input_ids"].to(args.device)
